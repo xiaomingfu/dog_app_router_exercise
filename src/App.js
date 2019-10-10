@@ -70,7 +70,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
-          {/* <Route exact path="/dogs/:dogName" render={(routeProps) => <Dog name={routeProps} />} /> */}
+          <Route exact path="/dogs/:dogName" render={(routeProps) => <Dog name={routeProps} dogs={this.props.dogs} />} />
           <Route render={() => <DogList />} />
         </Switch>
       </div>
