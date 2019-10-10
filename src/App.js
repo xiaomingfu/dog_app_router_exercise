@@ -43,17 +43,34 @@ class App extends Component {
       }
     ]
   }
+
   render() {
 
-    let navbar = this.props.dogs.map(d => <NavLink to={`/dogs/${d.name}`}>{d.name}</NavLink>)
+    let navbar = this.props.dogs.map(d => <li><NavLink to={`/dogs/${d.name}`}>{d.name}</NavLink></li>)
     return (
       <div className="App">
-        <div className="Navbar">
-          {navbar}
-        </div>
+        <nav className="navbar navbar-fixed-top navbar-inverse navbar-left">
+          <div className="container-fluid">
+            <div className="container-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a className="navbar-brand">Dog Shelter</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><NavLink to="/dogs">Home</NavLink></li>
+                {navbar}
+              </ul>
+            </div>
+          </div>
+        </nav>
         <Switch>
           <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
-          <Route exact path="/dogs/:dogname" render={(routeProps) => <Dog dogname={routeProps} />} />
+          {/* <Route exact path="/dogs/:dogName" render={(routeProps) => <Dog name={routeProps} />} /> */}
           <Route render={() => <DogList />} />
         </Switch>
       </div>

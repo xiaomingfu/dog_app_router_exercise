@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import { Redirct } from 'react-router-dom';
 class Dog extends Component {
     render() {
         return (
             <div className="Dog">
-                <h1>This is dog page</h1>
+                <h1>Dog Page</h1>
             </div>
         )
     }
