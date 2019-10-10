@@ -45,32 +45,32 @@ class App extends Component {
   }
 
   render() {
-
-    let navbar = this.props.dogs.map(d => <li><NavLink to={`/dogs/${d.name}`}>{d.name}</NavLink></li>)
+    //function
+    const getDog = props => {
+      let name = props.match.params.name;
+      let currentDog = this.props.dogs.find(
+        dog => dog.name.toLowerCase() === name.toLowerCase()
+      );
+      return <Dog {...props} dog={currentDog} />
+    }
+    let navbar = this.props.dogs.map(d => <li key={d.name}><NavLink to={`/dogs/${d.name}`} >{d.name}</NavLink></li>)
     return (
-      <div className="App">
-        <nav className="navbar navbar-fixed-top navbar-inverse navbar-left">
-          <div className="container-fluid">
-            <div className="container-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a className="navbar-brand">Dog Shelter</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><NavLink to="/dogs">Home</NavLink></li>
-                {navbar}
-              </ul>
-            </div>
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Dog Shelter</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li><NavLink to="/dogs">Home</NavLink></li>
+              {navbar}
+            </ul>
           </div>
         </nav>
         <Switch>
           <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
-          <Route exact path="/dogs/:dogName" render={(routeProps) => <Dog name={routeProps} dogs={this.props.dogs} />} />
+          <Route exact path="/dogs/:name" render={getDog} />
           <Route render={() => <DogList />} />
         </Switch>
       </div>

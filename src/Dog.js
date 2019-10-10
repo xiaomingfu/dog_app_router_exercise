@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-// const dogsName = this.props.dogs.map(d => d.name);
-// const name = this.props.match.params.name;
+import { Redirect, Link } from 'react-router-dom';
+import './Dog.css';
 
 class Dog extends Component {
-
-    // search(name) {
-    //     if (dogsName.includes(name)) {
-    //         let idx = dogsName.findIndex(name);
-    //         let dog = this.props.dogs.idx;
-    //         <div>
-    //             <h1>{dog.name}</h1>
-    //             <p>{dog.age}</p>
-    //             <img src={dog.src} />
-    //             <p>{dog.fact}</p>
-    //         </div>
-    //     } else {
-    //         <Redirect to="/dogs" />
-    //     }
-
-
-    // }
     render() {
-
-        let dog = this.props.dogs[0];
-        console.log(dog);
+        let { dog } = this.props;
         return (
-            <div className="Dog">
-                <div>
-                    <h1>{dog.name}</h1>
-                    <p>{dog.age}</p>
-                    <img src={dog.src} />
-                    {dog.facts.map(f => <p>{f}</p>)}
+            <div className="container">
+                <div className="Dog row justify-content-center mt-5">
+                    <div className="col-11 col-lg-6">
+                        <div className="Dog-card card">
+                            <img className="card-img-top" src={dog.src} alt={dog.name} />
+                            <div className="card-body">
+                                <h2 className="card-title">{dog.name}</h2>
+                                <h4 className="card-subtitle text-muted">{dog.age} years old</h4>
+                            </div>
+                            <ul className="list-group list-group-flush">
+                                {dog.facts.map((f, i) => (
+                                    <li className="list-group-item" key={i}>
+                                        {f}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="card-body">
+                                <Link className="btn btn-info" to="/dogs">Go Back</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         )
     }
