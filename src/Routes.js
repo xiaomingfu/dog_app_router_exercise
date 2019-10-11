@@ -5,12 +5,12 @@ import Dog from './Dog';
 class Routes extends Component {
     render() {
         //function
-        const getDog = props => {
-            let name = props.match.params.name;
+        const getDog = routeProps => {
+            let name = routeProps.match.params.name;
             let currentDog = this.props.dogs.find(
                 dog => dog.name.toLowerCase() === name.toLowerCase()
             );
-            return <Dog {...props} dog={currentDog} />
+            return <Dog {...routeProps} dog={currentDog} />
         }
         return (
             <Switch>
