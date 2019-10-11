@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 
 import Navbar from './Navbar';
@@ -47,9 +45,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <Navbar dogs={this.props.dogs} />
-        <Routes dogs={this.props.dogs} />
+        <div className="container">
+          <Routes dogs={this.props.dogs} />
+        </div>
       </div>
     );
   }

@@ -16,7 +16,7 @@ class Routes extends Component {
             <Switch>
                 <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
                 <Route exact path="/dogs/:name" render={getDog} />
-                <Redirect render={() => <DogList />} />
+                <Redirect to='/dog' />
             </Switch>
         )
     }
